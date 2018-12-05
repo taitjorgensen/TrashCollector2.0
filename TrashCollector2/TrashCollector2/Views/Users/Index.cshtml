@@ -1,11 +1,11 @@
-﻿
+﻿@using TrashCollector2.Models
 @{
     ViewBag.Title = "Index";
 }
 
 @if (ViewBag.displayMenu == "Yes")
 {
-    <h1>Welcome Admin. Now you can create User Roles.</h1>
+    <h1>Welcome Admin! Now you can create User Roles.</h1>
 
     <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
 }

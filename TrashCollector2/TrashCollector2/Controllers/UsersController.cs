@@ -23,6 +23,14 @@ namespace TrashCollector2.Controllers
                 {
                     ViewBag.displayMenu = "Yes";
                 }
+                else if (User.IsInRole("Customer"))
+                {
+                    RedirectToAction("Index", "Customers");
+                }
+                else if (User.IsInRole("Employee"))
+                {
+                    RedirectToAction("Index", "Employees");
+                }                
                 return View();
             }
             else

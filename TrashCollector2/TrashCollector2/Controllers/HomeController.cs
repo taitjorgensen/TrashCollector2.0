@@ -10,19 +10,31 @@ namespace TrashCollector2.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+
+            if (User.IsInRole("Customer"))
+            {
+                return RedirectToAction("Index", "Customers");
+            }
+            else if (User.IsInRole("Employee"))
+            {
+                return RedirectToAction("Index", "Employees");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Tait's Trash Collection is here to serve you.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "TTC contact page.";
 
             return View();
         }

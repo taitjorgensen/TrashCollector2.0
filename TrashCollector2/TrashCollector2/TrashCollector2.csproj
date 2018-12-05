@@ -185,8 +185,18 @@
     <Compile Include="Migrations\201812041729154_InitialMigration.Designer.cs">
       <DependentUpon>201812041729154_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812042037066_Updating role table.cs" />
+    <Compile Include="Migrations\201812042037066_Updating role table.Designer.cs">
+      <DependentUpon>201812042037066_Updating role table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812042228555_Adding Customers and Employees.cs" />
+    <Compile Include="Migrations\201812042228555_Adding Customers and Employees.Designer.cs">
+      <DependentUpon>201812042228555_Adding Customers and Employees.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Customers.cs" />
+    <Compile Include="Models\Employees.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -249,10 +259,17 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Role\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -270,6 +287,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812041729154_InitialMigration.resx">
       <DependentUpon>201812041729154_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812042037066_Updating role table.resx">
+      <DependentUpon>201812042037066_Updating role table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812042228555_Adding Customers and Employees.resx">
+      <DependentUpon>201812042228555_Adding Customers and Employees.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

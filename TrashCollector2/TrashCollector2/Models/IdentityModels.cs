@@ -30,5 +30,9 @@ namespace TrashCollector2.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<TrashCollector2.Models.Customers> Customers { get; set; }
+
+        public System.Data.Entity.DbSet<TrashCollector2.Models.Employees> Employees { get; set; }
     }
 }

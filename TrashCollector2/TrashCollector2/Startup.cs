@@ -27,7 +27,7 @@ namespace TrashCollector2
             {
 
                 // first we create Admin rool   
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                var role = new IdentityRole();
                 role.Name = "Admin";
                 roleManager.Create(role);
 
@@ -55,7 +55,6 @@ namespace TrashCollector2
                 var role = new IdentityRole();
                 role.Name = "Employee";
                 roleManager.Create(role);
-
             }
 
             // creating Creating Employee role    
@@ -64,7 +63,6 @@ namespace TrashCollector2
                 var role = new IdentityRole();
                 role.Name = "Customer";
                 roleManager.Create(role);
-
             }
         }
     }

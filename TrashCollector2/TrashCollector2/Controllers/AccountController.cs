@@ -81,7 +81,16 @@ namespace TrashCollector2.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    if (this.User.IsInRole("Customer"))
+                    {
+                        RedirectToAction("Index", "Customers");
+                    }
+                    else if (this.User.IsInRole("Employee"))
+                    {
+                        RedirectToAction("Index", "Employees");
+                    }
+                    return RedirectToAction("Index", "Role");
+                    //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -168,7 +177,15 @@ namespace TrashCollector2.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
-                    return RedirectToAction("Index", "Home");
+                    if (this.User.IsInRole("Customer"))
+                    {
+                        RedirectToAction("Create", "Customer");
+                    }
+                    else if (this.User.IsInRole("Employee"))
+                    {
+                        RedirectToAction("Create", "Employee");
+                    }
+                    return RedirectToAction("Index", "Role");
                 }
                 ViewBag.Name = new SelectList(db.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
                 AddErrors(result);
