@@ -23,11 +23,11 @@ namespace TrashCollector2.Controllers
                 {
                     ViewBag.displayMenu = "Yes";
                 }
-                else if (User.IsInRole("Customer"))
+                else if (User.IsInRole("Customer".Trim()))
                 {
                     RedirectToAction("Index", "Customers");
                 }
-                else if (User.IsInRole("Employee"))
+                else if (User.IsInRole("Employee".Trim()))
                 {
                     RedirectToAction("Index", "Employees");
                 }                
@@ -48,7 +48,7 @@ namespace TrashCollector2.Controllers
                 ApplicationDbContext db = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 var s = UserManager.GetRoles(user.GetUserId());
-                if (s[0].ToString() == "Admin")
+                if (s[0].ToString() == "Admin".Trim())
                 {
                     return true;
                 }

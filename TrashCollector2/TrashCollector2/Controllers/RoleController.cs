@@ -41,7 +41,7 @@ namespace TrashCollector2.Controllers
                 ApplicationDbContext db = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 var s = UserManager.GetRoles(user.GetUserId());
-                if (s[0].ToString() == "Admin")
+                if (s[0].ToString() == "Admin".Trim())
                 {
                     return true;
                 }
@@ -51,6 +51,11 @@ namespace TrashCollector2.Controllers
                 }
             }
             return false;
+        }
+
+        public ActionResult Create()
+        {
+            return View();
         }
     }
 }

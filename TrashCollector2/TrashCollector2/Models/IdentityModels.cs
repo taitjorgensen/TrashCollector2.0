@@ -34,5 +34,7 @@ namespace TrashCollector2.Models
         public System.Data.Entity.DbSet<TrashCollector2.Models.Customers> Customers { get; set; }
 
         public System.Data.Entity.DbSet<TrashCollector2.Models.Employees> Employees { get; set; }
+
+        public System.Data.Entity.DbSet<TrashCollector2.Models.PickUpDays> PickUpDays { get; set; }
     }
 }

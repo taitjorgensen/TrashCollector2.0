@@ -4,5 +4,78 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Account Home</h2>
 
+<p>
+    @Html.ActionLink("Edit Info", "Edit")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StreetAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickUpDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BalanceDue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExtraPickUp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartSuspendService)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndSuspendService)
+        </th>
+        <th></th>
+    </tr>
+
+
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.StreetAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ZipCode)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.PickUpDay)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.BalanceDue)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ExtraPickUp)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.StartSuspendService)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.EndSuspendService)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit") |
+            @Html.ActionLink("Details", "Details") |
+            @Html.ActionLink("Delete", "Delete")
+        </td>
+    </tr>
+}
+
+</table>

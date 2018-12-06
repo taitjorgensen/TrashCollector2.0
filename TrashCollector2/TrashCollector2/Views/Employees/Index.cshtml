@@ -1,4 +1,4 @@
-﻿@model TrashCollector2.Models.Employees
+﻿@model IEnumerable<TrashCollector2.Models.Employees>
 
 @{
     ViewBag.Title = "Index";
@@ -6,3 +6,28 @@
 
 <h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Edit Info", "Edit")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EmployeeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeID })
+        </td>
+    </tr>
+}
+
+</table>

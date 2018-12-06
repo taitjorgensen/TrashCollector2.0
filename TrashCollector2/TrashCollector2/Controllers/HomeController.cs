@@ -11,11 +11,11 @@ namespace TrashCollector2.Controllers
         public ActionResult Index()
         {
 
-            if (User.IsInRole("Customer"))
+            if (User.IsInRole("Customer".Trim()))
             {
                 return RedirectToAction("Index", "Customers");
             }
-            else if (User.IsInRole("Employee"))
+            else if (User.IsInRole("Employee".Trim()))
             {
                 return RedirectToAction("Index", "Employees");
             }

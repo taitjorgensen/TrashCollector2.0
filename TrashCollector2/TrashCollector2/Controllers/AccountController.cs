@@ -81,15 +81,7 @@ namespace TrashCollector2.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    if (this.User.IsInRole("Customer"))
-                    {
-                        RedirectToAction("Index", "Customers");
-                    }
-                    else if (this.User.IsInRole("Employee"))
-                    {
-                        RedirectToAction("Index", "Employees");
-                    }
-                    return RedirectToAction("Index", "Role");
+                    return View();
                     //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -151,7 +143,8 @@ namespace TrashCollector2.Controllers
         public ActionResult Register()
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            ViewBag.Name = new SelectList(db.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+            ViewBag.Name = new SelectList(db.Roles.Where(u => !u.Name.Contains("Admin".Trim())).ToList(), "Name", "Name");
+
             return View();
         }
 
@@ -165,7 +158,7 @@ namespace TrashCollector2.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -177,17 +170,17 @@ namespace TrashCollector2.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
-                    if (this.User.IsInRole("Customer"))
+                    if (model.UserRoles == "Customer".Trim())
                     {
-                        RedirectToAction("Create", "Customer");
+                        return RedirectToAction("Create", "Customers");
                     }
-                    else if (this.User.IsInRole("Employee"))
+                    else if (model.UserRoles == "Employee".Trim())
                     {
-                        RedirectToAction("Create", "Employee");
+                        return RedirectToAction("Create", "Employees");
                     }
                     return RedirectToAction("Index", "Role");
                 }
-                ViewBag.Name = new SelectList(db.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+                ViewBag.Name = new SelectList(db.Roles.Where(u => !u.Name.Contains("Admin".Trim())).ToList(), "Name", "Name");
                 AddErrors(result);
             }
 
