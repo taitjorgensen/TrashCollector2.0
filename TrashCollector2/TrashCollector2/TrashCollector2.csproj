@@ -219,6 +219,10 @@
     <Compile Include="Migrations\201812061714539_BeginningEmployeePickUpView.Designer.cs">
       <DependentUpon>201812061714539_BeginningEmployeePickUpView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812062212306_AddingEmployeeZipCode.cs" />
+    <Compile Include="Migrations\201812062212306_AddingEmployeeZipCode.Designer.cs">
+      <DependentUpon>201812062212306_AddingEmployeeZipCode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customers.cs" />
@@ -345,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812061714539_BeginningEmployeePickUpView.resx">
       <DependentUpon>201812061714539_BeginningEmployeePickUpView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812062212306_AddingEmployeeZipCode.resx">
+      <DependentUpon>201812062212306_AddingEmployeeZipCode.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

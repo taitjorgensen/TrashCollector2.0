@@ -18,13 +18,14 @@ namespace TrashCollector2.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            var today = DateTime.Today.DayOfWeek.ToString();
             ApplicationDbContext db = new ApplicationDbContext();
-            var customersByDay = db.Customers.Where(c => (c.PickUpDay == today) || (c.ExtraPickUp == DateTime.Today));
-            ViewBag.Days = new SelectList(days);
-            ViewBag.PickUps = new SelectList(customersByDay);
-            return View(customersByDay);
-            //return View(db.Customers.ToList());
+            Employees user = db.Employees.Where(e => e.UserName == User.Identity.Name).SingleOrDefault();
+            var today = DateTime.Today.DayOfWeek.ToString();
+            var customersByDay = db.Customers.Where(c => (c.PickUpDay == today) || (c.ExtraPickUp == DateTime.Today)).ToList();
+            var custNotOnServiceBreak = customersByDay.Where(d => !((d.StartSuspendService <= DateTime.Today) && (d.EndSuspendService > DateTime.Today))).ToList();
+            var customersInZip = custNotOnServiceBreak.Where(z => z.ZipCode == user.ZipCode);
+            ViewBag.PickUps = new SelectList(customersInZip);
+            return View(customersInZip);
         }
 
         // GET: Employees/Details/5
@@ -53,7 +54,7 @@ namespace TrashCollector2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeID,UserName")] Employees employees)
+        public ActionResult Create([Bind(Include = "EmployeeID,UserName,ZipCode")] Employees employees)
         {
             if (ModelState.IsValid)
             {
