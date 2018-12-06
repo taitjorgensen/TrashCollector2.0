@@ -1,0 +1,39 @@
+﻿
+@model IEnumerable<TrashCollector2.Models.Customers>
+
+@{
+    ViewBag.Title = "PickUps";
+}
+
+<h2>PickUps</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th></th>
+    </tr>
+    <div class="form-group">
+        @Html.LabelFor(model => model, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("PickUpDay", (SelectList)ViewBag.Days, " ")
+            @*@Html.ValidationMessageFor(model => model.employeeSelection, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+    @foreach (var item in ViewBag.PickUps)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CustomerId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CustomerId })
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -1,33 +1,55 @@
-﻿@model IEnumerable<TrashCollector2.Models.Employees>
+﻿@model IEnumerable<TrashCollector2.Models.Customers>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Pick Ups";
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Edit Info", "Edit")
-</p>
+<div class="form-group">
+    @Html.LabelFor(model => model, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("PickUpDay", (SelectList)ViewBag.Days, " ")
+        @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })
+    </div>
+</div>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.DisplayNameFor(c => c.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(c => c.StreetAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(c => c.ZipCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(c => c.BalanceDue)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EmployeeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StreetAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BalanceDue)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CustomerId })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201812052145176_Corrected PickUpDays Model.Designer.cs">
       <DependentUpon>201812052145176_Corrected PickUpDays Model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812061714539_BeginningEmployeePickUpView.cs" />
+    <Compile Include="Migrations\201812061714539_BeginningEmployeePickUpView.Designer.cs">
+      <DependentUpon>201812061714539_BeginningEmployeePickUpView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customers.cs" />
@@ -296,6 +300,7 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Days\Index.cshtml" />
+    <Content Include="Views\Employees\PickUps.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -337,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812052145176_Corrected PickUpDays Model.resx">
       <DependentUpon>201812052145176_Corrected PickUpDays Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812061714539_BeginningEmployeePickUpView.resx">
+      <DependentUpon>201812061714539_BeginningEmployeePickUpView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

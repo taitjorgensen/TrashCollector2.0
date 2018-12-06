@@ -13,11 +13,18 @@ namespace TrashCollector2.Controllers
     public class EmployeesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        List<string> days = new List<string> { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
         // GET: Employees
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            var today = DateTime.Today.DayOfWeek.ToString();
+            ApplicationDbContext db = new ApplicationDbContext();
+            var customersByDay = db.Customers.Where(c => (c.PickUpDay == today) || (c.ExtraPickUp == DateTime.Today));
+            ViewBag.Days = new SelectList(days);
+            ViewBag.PickUps = new SelectList(customersByDay);
+            return View(customersByDay);
+            //return View(db.Customers.ToList());
         }
 
         // GET: Employees/Details/5
@@ -87,6 +94,15 @@ namespace TrashCollector2.Controllers
                 return RedirectToAction("Index");
             }
             return View(employees);
+        }
+        public ActionResult PickUps()
+        {
+            var today = DateTime.Today.DayOfWeek.ToString();           
+            ApplicationDbContext db = new ApplicationDbContext();
+            var customersByDay = db.Customers.Where(c => c.PickUpDay == today);
+            ViewBag.Days = new SelectList(days);
+            ViewBag.PickUps = new SelectList(customersByDay);
+            return View(customersByDay);
         }
 
         // GET: Employees/Delete/5

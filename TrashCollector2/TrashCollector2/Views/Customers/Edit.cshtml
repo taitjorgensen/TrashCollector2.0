@@ -58,7 +58,7 @@
         @Html.LabelFor(model => model.PickUpDay, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownList("PickUpDay", (SelectList)ViewBag.Days, " ")
-            @*@Html.ValidationMessageFor(model => model.PickUpDay, "", new { @class = "text-danger" })*@
+            @Html.ValidationMessageFor(model => model.PickUpDay, "", new { @class = "text-danger" })
         </div>
     </div>
 
