@@ -57,7 +57,7 @@ namespace TrashCollector2.Controllers
         public ActionResult Create([Bind(Include = "EmployeeID,UserName,ZipCode")] Employees employees)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 db.Employees.Add(employees);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -139,6 +139,18 @@ namespace TrashCollector2.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult Button_Click(int customerId, bool complete = false)
+        {
+            var customerToCharge = db.Customers.Where(c => c.CustomerId == customerId).FirstOrDefault();
+            if (customerToCharge.BalanceDue == null)
+            {
+                customerToCharge.BalanceDue = 0;
+            }
+            double pickUpPrice = 15;    
+            customerToCharge.BalanceDue += pickUpPrice;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

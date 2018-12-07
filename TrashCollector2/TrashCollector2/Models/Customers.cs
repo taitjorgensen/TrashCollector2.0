@@ -23,5 +23,6 @@ namespace TrashCollector2.Models
         public DateTime? ExtraPickUp { get; set; }
         public DateTime? StartSuspendService { get; set; }
         public DateTime? EndSuspendService { get; set; }
+        public bool hasBeenPickedUp { get; set; }
     }
 }

@@ -51,18 +51,28 @@ namespace TrashCollector2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerId,LastName,StreetAddress,ZipCode,PickUpDay,StartSuspendService,EndSuspendService")] Customers customers)
+        public ActionResult Create([Bind(Include = "CustomerId,LastName,StreetAddress,ZipCode,PickUpDay")] Customers customers)
         {
             customers.ApplicationId = User.Identity.GetUserId();
             customers.UserName = User.Identity.GetUserName();
             if (ModelState.IsValid)
             {
+                FillInTheBlanks(customers);
                 db.Customers.Add(customers);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View(customers);
+        }
+
+        private Customers FillInTheBlanks(Customers customers)
+        {
+            customers.BalanceDue = 0;
+            customers.StartSuspendService = DateTime.Parse("01/01/2000");
+            customers.EndSuspendService = DateTime.Parse("01/01/2000");
+            customers.hasBeenPickedUp = false;
+            return customers;
         }
 
         // GET: Customers/Edit/5
@@ -96,6 +106,13 @@ namespace TrashCollector2.Controllers
                 return RedirectToAction("Index");
             }
             return View(customers);
+        }
+        public ActionResult Button_Click(string customer, bool complete = false)
+        {
+            var customerToPay = db.Customers.Where(c => c.UserName == customer).FirstOrDefault();
+            customerToPay.BalanceDue = 0;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Customers/Delete/5
