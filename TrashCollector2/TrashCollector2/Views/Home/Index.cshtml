@@ -5,7 +5,7 @@
 <div class="jumbotron">
     <h1>Tait's Trash Collection</h1>
     <p class="lead">At TTC we believe there is a better way to provide trash collection service with our customer in mind!</p>
-    <p><a href="https://www.marvel.com" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <p>@Html.ActionLink("About", "About", "Home")</p>
 </div>
 
 <div class="row">
@@ -14,12 +14,12 @@
         <p>
             Not a customer yet?  Use the link below to register and begin to see the difference!
         </p>
-        <p><a class="btn btn-default" href="https://www.marvel.com">Register &raquo;</a></p>
+        <p>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</p>
     </div>
     <div class="col-md-4">
         <h2>Existing Customer</h2>
         <p>Log in and add a pick up, schedule a temporary hold on service, change your pick up day, and more!</p>
-        <p><a class="btn btn-default" href="https://www.ohiostatebuckeyes.com">Log in &raquo;</a></p>
+        <p>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</p>
     </div>
     <div class="col-md-4">
         <h2>Our impact</h2>

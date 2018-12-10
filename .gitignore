@@ -328,4 +328,11 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+<<<<<<< HEAD
 */Models/Key.cs
+=======
+
+# API Key
+*/Models/Key.cs
+*/Key.cs*
+>>>>>>> 5de927f4cd617339ea7d22d7e87d1ce606a77891

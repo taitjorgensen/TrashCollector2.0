@@ -231,6 +231,10 @@
     <Compile Include="Migrations\201812091805160_AddedAPIKey.Designer.cs">
       <DependentUpon>201812091805160_AddedAPIKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812100406365_AddedGoogleMapsAPI.cs" />
+    <Compile Include="Migrations\201812100406365_AddedGoogleMapsAPI.Designer.cs">
+      <DependentUpon>201812100406365_AddedGoogleMapsAPI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomerDayViewModel.cs" />
@@ -368,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812091805160_AddedAPIKey.resx">
       <DependentUpon>201812091805160_AddedAPIKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812100406365_AddedGoogleMapsAPI.resx">
+      <DependentUpon>201812100406365_AddedGoogleMapsAPI.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
