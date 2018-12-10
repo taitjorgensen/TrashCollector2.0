@@ -25,7 +25,45 @@ namespace TrashCollector2.Controllers
             var custNotOnServiceBreak = customersByDay.Where(d => !((d.StartSuspendService <= DateTime.Today) && (d.EndSuspendService > DateTime.Today))).ToList();
             var customersInZip = custNotOnServiceBreak.Where(z => z.ZipCode == user.ZipCode);
             ViewBag.PickUps = new SelectList(customersInZip);
-            return View(customersInZip);
+
+            List<string> days = new List<string> { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+            ViewBag.Days = (days);
+
+            CustomerDayViewModel cdvm = new CustomerDayViewModel();
+            cdvm.Customers = customersInZip;
+           
+            return View(cdvm);
+        }
+
+        [HttpPost]
+        public ActionResult Index(CustomerDayViewModel cdvm)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Employees user = db.Employees.Where(e => e.UserName == User.Identity.Name).SingleOrDefault();
+            var customersByDay = db.Customers.Where(c => c.PickUpDay == cdvm.PickUpDay).ToList();
+            var customersInZip = customersByDay.Where(z => z.ZipCode == user.ZipCode);
+            ViewBag.PickUps = new SelectList(customersInZip);
+            cdvm.Customers = customersInZip;
+            ViewBag.Days = days;
+            return View(cdvm);
+        }
+
+        [HttpGet]
+        public ActionResult PickUps(string dayView)
+        {
+            ViewBag.Days = days;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PickUps(string dayView, Customers customer)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Employees user = db.Employees.Where(e => e.UserName == User.Identity.Name).SingleOrDefault();
+            var customersByDay = db.Customers.Where(c => c.PickUpDay == dayView).ToList();
+            var customersInZip = customersByDay.Where(z => z.ZipCode == user.ZipCode);
+            ViewBag.PickUps = new SelectList(customersInZip);
+            return View("PickUps", "Employees", customersInZip);
         }
 
         // GET: Employees/Details/5
@@ -96,15 +134,15 @@ namespace TrashCollector2.Controllers
             }
             return View(employees);
         }
-        public ActionResult PickUps()
-        {
-            var today = DateTime.Today.DayOfWeek.ToString();           
-            ApplicationDbContext db = new ApplicationDbContext();
-            var customersByDay = db.Customers.Where(c => c.PickUpDay == today);
-            ViewBag.Days = new SelectList(days);
-            ViewBag.PickUps = new SelectList(customersByDay);
-            return View(customersByDay);
-        }
+        //public ActionResult PickUps()
+        //{
+        //    var today = DateTime.Today.DayOfWeek.ToString();           
+        //    ApplicationDbContext db = new ApplicationDbContext();
+        //    var customersByDay = db.Customers.Where(c => c.PickUpDay == today);
+        //    ViewBag.Days = new SelectList(days);
+        //    ViewBag.PickUps = new SelectList(customersByDay);
+        //    return View(customersByDay);
+        //}
 
         // GET: Employees/Delete/5
         public ActionResult Delete(int? id)
@@ -152,5 +190,6 @@ namespace TrashCollector2.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        
     }
 }

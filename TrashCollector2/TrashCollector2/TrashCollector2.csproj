@@ -227,11 +227,17 @@
     <Compile Include="Migrations\201812071542168_AddedPickUpConfirmedToCustomer.Designer.cs">
       <DependentUpon>201812071542168_AddedPickUpConfirmedToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812091805160_AddedAPIKey.cs" />
+    <Compile Include="Migrations\201812091805160_AddedAPIKey.Designer.cs">
+      <DependentUpon>201812091805160_AddedAPIKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CustomerDayViewModel.cs" />
     <Compile Include="Models\Customers.cs" />
     <Compile Include="Models\Employees.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Key.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PickUpDays.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -359,6 +365,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812071542168_AddedPickUpConfirmedToCustomer.resx">
       <DependentUpon>201812071542168_AddedPickUpConfirmedToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812091805160_AddedAPIKey.resx">
+      <DependentUpon>201812091805160_AddedAPIKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
